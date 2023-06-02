@@ -2,13 +2,15 @@ import React from "react";
 
 function Login({ onLogin }) {
   const [formValue, setFormValue] = React.useState({
-    email: "",
     password: "",
+    email: "",
+    
   });
 
   function handleSubmit(e) {
     e.preventDefault();
-    onLogin({ email, password });
+    const { password, email } = formValue;
+    onLogin({ password, email });
   }
 
   function handleChange(e) {
@@ -33,21 +35,21 @@ function Login({ onLogin }) {
           id="email"
           type="email"
           name="email"
-          className="login__input_email"
+          className="login__input"
           placeholder="Email"
           required
           onChange={handleChange}
-          value={email || ""}
+          value={formValue.email || ""}
         />
         <input
           id="password"
           type="password"
           name="password"
-          className="login__input_password"
+          className="login__input"
           placeholder="Пароль"
           required
           onChange={handleChange}
-          value={password || ""}
+          value={formValue.password || ""}
         />
         <button type="submit" className="login__button-submit">
           Войти

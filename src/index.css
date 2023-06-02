@@ -53,3 +53,16 @@
 /*footer*/
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__copyright/footer__copyright.css);
+/*login*/
+@import url(./blocks/login/login.css);
+@import url(./blocks/login/__title/login__title.css);
+@import url(./blocks/login/__input/login__input.css);
+@import url(./blocks/login/__form/login__form.css);
+@import url(./blocks/login/__button-submit/login__button-submit.css);
+/*registration*/
+@import url(./blocks/registration/registration.css);
+@import url(./blocks/registration/__title/registration__title.css);
+@import url(./blocks/registration/__input/registration__input.css);
+@import url(./blocks/registration/__form/registration__form.css);
+@import url(./blocks/registration/__button-submit/registration__button-submit.css);
+@import url(./blocks/registration/__link/registration__link.css);

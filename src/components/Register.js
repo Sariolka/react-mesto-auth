@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Register({ onRegister }) {
-  const [formValue, setFormValue] = useState({
+  const [formValue, setFormValue] = React.useState({
     email: "",
     password: "",
   });
@@ -18,7 +18,8 @@ function Register({ onRegister }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister({ email, password });
+    const { password, email } = formValue;
+    onRegister( password, email );
   };
 
   return (
@@ -34,29 +35,29 @@ function Register({ onRegister }) {
           id="email"
           type="email"
           name="email"
-          className="registration__input_email"
+          className="registration__input"
           placeholder="Email"
           required
           onChange={handleChange}
-          value={email || ""}
+          value={formValue.email || ""}
         />
         <input
           id="password"
           type="password"
           name="password"
-          className="registration__input_password"
+          className="registration__input"
           placeholder="Пароль"
           required
           onChange={handleChange}
-          value={password || ""}
+          value={formValue.password || ""}
         />
         <button type="submit" className="registration__button-submit">
           Зарегистрироваться
         </button>
-      </form>
       <Link to="/sign-in" className="registration__link">
         Уже зарегистрированы? Войти
       </Link>
+      </form>
     </div>
   );
 }

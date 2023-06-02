@@ -1,5 +1,6 @@
 import React from "react";
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Switch, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import * as auth from "../utils/auth.js";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
@@ -28,7 +29,8 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [cardForDelete, setCardForDelete] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [email, setEmail] = React.useState({});
+  const [email, setEmail] = React.useState("");
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     api
@@ -38,7 +40,7 @@ function App() {
         console.log(user);
       })
       .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       });
   }, []);
 
@@ -50,15 +52,12 @@ function App() {
         console.log(cards);
       })
       .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       });
   }, []);
 
   function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some((c) => c._id === currentUser._id);
-
-    // Отправляем запрос в API и получаем обновлённые данные карточки
     api
       .changeLikeCardStatus(card, isLiked)
       .then((newCard) => {
@@ -118,6 +117,33 @@ function App() {
         console.log(err);
       });
   }
+
+  function handleRegister(password, email) {
+    auth
+      .register(password, email)
+      .then(() => {
+        navigate("/sign-in", { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleLogin(password, email) {
+    auth
+      .authorize(password, email)
+      .then((res) => {
+        if (res.jwt) {
+          localStorage.setItem("jwt", res.jwt);
+          setLoggedIn(true);
+          navigate("/", { replace: true });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
   };
@@ -152,20 +178,30 @@ function App() {
       <div className="page">
         <Header />
         <Routes>
-          <Route path="/sign-up" element={<Register />} />
-          <Route path="/sign-in" element={<Login />} />
-          <ProtectedRoute path="/" element={loggedIn ? <Navigate to="/" replace /> : <Navigate to="/sign-in" replace />} />
+          <Route
+            path="/sign-up"
+            element={<Register onRegister={handleRegister} />}
+          />
+          <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute
+                element={Main}
+                loggedIn={loggedIn}
+                onEditAvatar={handleEditAvatarClick}
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onClose={closeAllPopups}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handleOpenCardDeletePopup}
+                cards={cards}
+              />
+            }
+          />
         </Routes>
-        <Main
-          onEditAvatar={handleEditAvatarClick}
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onClose={closeAllPopups}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          onCardDelete={handleOpenCardDeletePopup}
-          cards={cards}
-        />
+
         <Footer />
 
         <EditAvatarPopup
