@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import * as auth from "../utils/auth.js";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -133,9 +133,11 @@ function App() {
     auth
       .authorize(password, email)
       .then((res) => {
-        if (res.jwt) {
-          localStorage.setItem("jwt", res.jwt);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
+          setEmail(email);
+          console.log(email);
           navigate("/", { replace: true });
         }
       })
@@ -143,6 +145,29 @@ function App() {
         console.log(err);
       });
   }
+
+  function handleTokenCheck() {
+    if (localStorage.getItem("jwt")) {
+      const token = localStorage.getItem("jwt");
+      auth
+        .checkToken(token)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            console.log(res.data.email);
+            setEmail(res.data.email);
+            navigate("/", { replace: true });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  React.useEffect(() => {
+    handleTokenCheck();
+  }, []);
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
@@ -176,7 +201,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header />
+        <Header email={email}/>
         <Routes>
           <Route
             path="/sign-up"

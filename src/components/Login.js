@@ -10,7 +10,7 @@ function Login({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     const { password, email } = formValue;
-    onLogin({ password, email });
+    onLogin( password, email );
   }
 
   function handleChange(e) {

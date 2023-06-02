@@ -4,7 +4,12 @@
   outline: none;
   border: none;
   border-bottom: 2px solid #ccc;
-  color: rgb(204, 204, 204);
   padding-bottom: 13px;
   text-decoration: none;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ccc;
 }
