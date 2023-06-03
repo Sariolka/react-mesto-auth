@@ -146,6 +146,11 @@ function App() {
       });
   }
 
+
+  function onSignOut() {
+    localStorage.removeItem('jwt')
+    setLoggedIn(false)
+  }
   function handleTokenCheck() {
     if (localStorage.getItem("jwt")) {
       const token = localStorage.getItem("jwt");
@@ -201,7 +206,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header email={email}/>
+        <Header email={email} onSignOut={onSignOut}/>
         <Routes>
           <Route
             path="/sign-up"
