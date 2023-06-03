@@ -41,6 +41,9 @@
 @import url(./blocks/popup/__error-place/popup__error-place.css);
 @import url(./blocks/popup/__error-avatar/popup__error-avatar.css);
 @import url(./blocks/popup/__title/_delete-card/popup__title_delete-card.css);
+@import url(./blocks/popup/__container-tooltip/popup__container-toopltip.css);
+@import url(./blocks/popup/__tooltip-pic/popup__tooltip-pic.css);
+@import url(./blocks/popup/__tooltip-title/popup__tooltip-title.css);
 
 /*elements*/
 @import url(./blocks/cards/cards.css);

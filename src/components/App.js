@@ -12,6 +12,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import DeleteCardPopup from "./DeleteCardPopup";
+import InfoTooltip from "./InfoTooltip.js";
 import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
@@ -24,12 +25,15 @@ function App() {
   const [isOpenCardPopupOpen, setIsOpenCardPopupOpen] = React.useState(false);
   const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] =
     React.useState(false);
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] =
+    React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [cardForDelete, setCardForDelete] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
+  const [isSuccess, setIsSuccess] = React.useState(false);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -123,9 +127,13 @@ function App() {
       .register(password, email)
       .then(() => {
         navigate("/sign-in", { replace: true });
+        setIsInfoTooltipPopupOpen(true);
+        setIsSuccess(true);
       })
       .catch((err) => {
         console.log(err);
+        setIsInfoTooltipPopupOpen(true);
+        setIsSuccess(false);
       });
   }
 
@@ -146,11 +154,11 @@ function App() {
       });
   }
 
-
   function onSignOut() {
-    localStorage.removeItem('jwt')
-    setLoggedIn(false)
+    localStorage.removeItem("jwt");
+    setLoggedIn(false);
   }
+
   function handleTokenCheck() {
     if (localStorage.getItem("jwt")) {
       const token = localStorage.getItem("jwt");
@@ -158,6 +166,7 @@ function App() {
         .checkToken(token)
         .then((res) => {
           if (res) {
+            setIsInfoTooltipPopupOpen(false);
             setLoggedIn(true);
             console.log(res.data.email);
             setEmail(res.data.email);
@@ -201,12 +210,13 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsOpenCardPopupOpen(false);
     setIsDeleteCardPopupOpen(false);
+    setIsInfoTooltipPopupOpen(false);
   };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header email={email} onSignOut={onSignOut}/>
+        <Header email={email} onSignOut={onSignOut} />
         <Routes>
           <Route
             path="/sign-up"
@@ -232,7 +242,7 @@ function App() {
           />
         </Routes>
 
-        <Footer />
+        {loggedIn && <Footer />}
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
@@ -263,6 +273,11 @@ function App() {
         onClose={closeAllPopups}
         onDeleteCard={handleCardDelete}
         card={cardForDelete}
+      />
+      <InfoTooltip
+        isOpen={isInfoTooltipPopupOpen}
+        onClose={closeAllPopups}
+        isSuccess={isSuccess}
       />
     </CurrentUserContext.Provider>
   );
