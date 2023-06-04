@@ -15,6 +15,7 @@ import DeleteCardPopup from "./DeleteCardPopup";
 import InfoTooltip from "./InfoTooltip.js";
 import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import Preloader from "./Preloader.js";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
@@ -34,6 +35,14 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [isSuccess, setIsSuccess] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  /*React.useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []); */
+
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -138,10 +147,12 @@ function App() {
   }
 
   function handleLogin(password, email) {
+    setLoading(true);
     auth
       .authorize(password, email)
       .then((res) => {
         if (res.token) {
+          setLoading(false);
           localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
           setEmail(email);
@@ -160,12 +171,14 @@ function App() {
   }
 
   function handleTokenCheck() {
+    setLoading(true);
     if (localStorage.getItem("jwt")) {
       const token = localStorage.getItem("jwt");
       auth
         .checkToken(token)
         .then((res) => {
           if (res) {
+            setLoading(false);
             setIsInfoTooltipPopupOpen(false);
             setLoggedIn(true);
             console.log(res.data.email);
@@ -214,19 +227,22 @@ function App() {
   };
 
   return (
+     
     <CurrentUserContext.Provider value={currentUser}>
+       
       <div className="page">
+       
         <Header email={email} onSignOut={onSignOut} />
         <Routes>
           <Route
             path="/sign-up"
             element={<Register onRegister={handleRegister} />}
           />
-          <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
+          <Route path="/sign-in" element={<Login onLogin={handleLogin}/>} />
           <Route
             path="/"
             element={
-              <ProtectedRoute
+              loading ? <Preloader loading={loading}/> :<ProtectedRoute
                 element={Main}
                 loggedIn={loggedIn}
                 onEditAvatar={handleEditAvatarClick}
@@ -266,7 +282,7 @@ function App() {
           onClose={closeAllPopups}
           isOpen={isOpenCardPopupOpen}
         />
-      </div>
+    
 
       <DeleteCardPopup
         isOpen={isDeleteCardPopupOpen}
@@ -279,8 +295,12 @@ function App() {
         onClose={closeAllPopups}
         isSuccess={isSuccess}
       />
+       
+      </div> 
     </CurrentUserContext.Provider>
-  );
+    
+  )
+  
 }
 
 export default App;

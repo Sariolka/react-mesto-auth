@@ -73,3 +73,6 @@
 @import url(./blocks/registration/__form/registration__form.css);
 @import url(./blocks/registration/__button-submit/registration__button-submit.css);
 @import url(./blocks/registration/__link/registration__link.css);
+
+
+@import url(./blocks/preloader/preloader.css);
