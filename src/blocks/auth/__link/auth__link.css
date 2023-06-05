@@ -1,4 +1,4 @@
-.registration__link {
+.auth__link {
   margin-top: 15px;
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
@@ -8,4 +8,15 @@
   text-align: center;
   color: #fff;
   text-decoration: none;
+  transition: background-color .5s ease;
+}
+
+.auth__link:hover {
+  opacity: .6;
+}
+
+@media (max-width: 580px) {
+  .auth__link {
+    margin-top: 20px;
+  }
 }

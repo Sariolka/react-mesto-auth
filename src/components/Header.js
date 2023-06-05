@@ -5,7 +5,9 @@ import { Routes, Route, Link } from "react-router-dom";
 function Header({ email, onSignOut }) {
   return (
     <header className="header">
+      <div className="header__container">
       <img src={logo} alt="Логотип сайта" className="header__logo" />
+      </div>
       <Routes>
       <Route path="/sign-up"
           element={<Link to="/sign-in" className="header__link">
@@ -30,6 +32,7 @@ function Header({ email, onSignOut }) {
           }
         />
       </Routes>
+      
     </header>
   );
 }

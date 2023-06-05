@@ -23,10 +23,10 @@ function Register({ onRegister }) {
   };
 
   return (
-    <div className="registration">
-      <p className="registration__title">Регистрация</p>
+    <div className="auth">
+      <p className="auth__title">Регистрация</p>
       <form
-        className="registration__form"
+        className="auth__form"
         name="registration"
         noValidate
         onSubmit={handleSubmit}
@@ -35,7 +35,7 @@ function Register({ onRegister }) {
           id="email"
           type="email"
           name="email"
-          className="registration__input"
+          className="auth__input"
           placeholder="Email"
           required
           onChange={handleChange}
@@ -45,16 +45,16 @@ function Register({ onRegister }) {
           id="password"
           type="password"
           name="password"
-          className="registration__input"
+          className="auth__input"
           placeholder="Пароль"
           required
           onChange={handleChange}
           value={formValue.password || ""}
         />
-        <button type="submit" className="registration__button-submit">
+        <button type="submit" className="auth__button-submit">
           Зарегистрироваться
         </button>
-      <Link to="/sign-in" className="registration__link">
+      <Link to="/sign-in" className="auth__link">
         Уже зарегистрированы? Войти
       </Link>
       </form>

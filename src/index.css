@@ -8,6 +8,7 @@
 @import url(./blocks/header/__email/header__email.css);
 @import url(./blocks/header/__button/header__button.css);
 @import url(./blocks/header/__login/header__login.css);
+@import url(./blocks/header/__container/header__container.css);
 /*profile*/
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__avatar-button/profile__avatar-button.css);
@@ -60,19 +61,13 @@
 /*footer*/
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__copyright/footer__copyright.css);
-/*login*/
-@import url(./blocks/login/login.css);
-@import url(./blocks/login/__title/login__title.css);
-@import url(./blocks/login/__input/login__input.css);
-@import url(./blocks/login/__form/login__form.css);
-@import url(./blocks/login/__button-submit/login__button-submit.css);
 /*registration*/
-@import url(./blocks/registration/registration.css);
-@import url(./blocks/registration/__title/registration__title.css);
-@import url(./blocks/registration/__input/registration__input.css);
-@import url(./blocks/registration/__form/registration__form.css);
-@import url(./blocks/registration/__button-submit/registration__button-submit.css);
-@import url(./blocks/registration/__link/registration__link.css);
+@import url(./blocks/auth/auth.css);
+@import url(./blocks/auth/__title/auth__title.css);
+@import url(./blocks/auth/__input/auth__input.css);
+@import url(./blocks/auth/__form/auth__form.css);
+@import url(./blocks/auth/__button-submit/auth__button-submit.css);
+@import url(./blocks/auth/__link/auth__link.css);
 
 
 @import url(./blocks/preloader/preloader.css);

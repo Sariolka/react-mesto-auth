@@ -12,3 +12,13 @@
     padding: 28px 27px 31.6px;
   }
 }
+
+@media (max-width: 580px) {
+  .header {
+    flex-direction: column-reverse;
+    margin: 0;
+    padding: 40px 0 0;
+    border-bottom: none;
+  }
+}
+

@@ -1,4 +1,4 @@
-.registration__title {
+.auth__title {
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -8,4 +8,11 @@
   color: #fff;
   margin-top: 60px;
   margin-bottom: 50px;
+}
+
+@media (max-width: 580px) {
+  .auth__title {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 }

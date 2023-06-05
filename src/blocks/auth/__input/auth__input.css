@@ -1,4 +1,4 @@
-.registration__input {
+.auth__input {
   margin-bottom: 30px;
   background-color: #000;
   outline: none;
@@ -13,3 +13,13 @@
   line-height: 17px;
   color: #ccc;
 }
+
+@media (max-width: 580px) {
+  .auth__input {
+    width: 260px;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+

@@ -5,3 +5,8 @@
   height: 330px;
   align-items: center;
 }
+@media (max-width: 580px) {
+  .popup__container-tooltip {
+    height: 308px;
+  }
+}

@@ -1,4 +1,4 @@
-.login__button-submit {
+.auth__button-submit {
   border-radius: 2px;
   background-color: rgba(255, 255, 255, 1);
   width: 358px;
@@ -11,4 +11,18 @@
   font-size: 18px;
   line-height: 22px;
   color: #000;
+  transition: background-color .5s ease;
+}
+
+.auth__button-submit:hover {
+  background-color: rgba(255, 255, 255, .85);
+}
+
+
+@media (max-width: 580px) {
+  .auth__button-submit {
+    margin: 143px auto 0;
+    width: 260px;
+    height: 46px;
+  }
 }

@@ -22,10 +22,10 @@ function Login({ onLogin }) {
   }
 
   return (
-    <div className="login">
-      <p className="login__title">Вход</p>
+    <div className="auth">
+      <p className="auth__title">Вход</p>
       <form
-        className="login__form"
+        className="auth__form"
         name="login"
         noValidate
         onSubmit={handleSubmit}
@@ -34,7 +34,7 @@ function Login({ onLogin }) {
           id="email"
           type="email"
           name="email"
-          className="login__input"
+          className="auth__input"
           placeholder="Email"
           required
           onChange={handleChange}
@@ -44,13 +44,13 @@ function Login({ onLogin }) {
           id="password"
           type="password"
           name="password"
-          className="login__input"
+          className="auth__input"
           placeholder="Пароль"
           required
           onChange={handleChange}
           value={formValue.password || ""}
         />
-        <button type="submit" className="login__button-submit">
+        <button type="submit" className="auth__button-submit">
           Войти
         </button>
       </form>
