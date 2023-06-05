@@ -147,12 +147,10 @@ function App() {
   }
 
   function handleLogin(password, email) {
-    setLoading(true);
     auth
       .authorize(password, email)
       .then((res) => {
         if (res.token) {
-          setLoading(false);
           localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
           setEmail(email);
@@ -231,7 +229,6 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
        
       <div className="page">
-       
         <Header email={email} onSignOut={onSignOut} />
         <Routes>
           <Route

@@ -1,27 +1,9 @@
 import React from "react";
 
-function Preloader(loading=true) {
+function Preloader(loading) {
   if(loading) {
     return (
-        <div className="preloader">
-    <div>
-        <div>
-            <div>
-                <div>
-                    <div>
-                        <div>
-                            <div>
-                                <div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <span className="preloader"></span>
   )};
 }
 
