@@ -9,6 +9,14 @@
 @import url(./blocks/header/__button/header__button.css);
 @import url(./blocks/header/__login/header__login.css);
 @import url(./blocks/header/__container/header__container.css);
+@import url(./blocks/header/__button-burger/header__button-burger.css);
+@import url(./blocks/header/__button-close/header__button-close.css);
+@import url(./blocks/header/__button-burger/__button-burger_hidden/header__button-burger_hidden.css);
+@import url(./blocks/header/__signout/header__signout.css);
+@import url(./blocks/header/__container/_signout/header__container_signout.css);
+@import url(./blocks/header/__login-mobile/header__login-mobile.css);
+@import url(./blocks/header/__open-menu/header__open-menu.css);
+@import url(./blocks/header/__mobile-signout/header__mobile-signout.css);
 /*profile*/
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__avatar-button/profile__avatar-button.css);

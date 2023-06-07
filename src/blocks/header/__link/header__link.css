@@ -14,3 +14,10 @@
 .header__link:hover {
   opacity: .6;
 }
+
+@media (max-width: 580px) {
+  .header__link {
+   margin-right: 30px;
+   margin-top: 33px;
+  }
+}

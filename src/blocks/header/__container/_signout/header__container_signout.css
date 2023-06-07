@@ -1,0 +1,10 @@
+.header__container_signout {
+  display: none;
+}
+
+@media (max-width: 580px) {
+  .header__container_signout {
+    border: none;
+    display: flex;
+  }
+}

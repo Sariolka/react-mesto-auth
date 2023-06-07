@@ -36,12 +36,7 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [isSuccess, setIsSuccess] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-  /*React.useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []); */
+
 
   const navigate = useNavigate();
 
@@ -228,7 +223,7 @@ function App() {
      
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header email={email} onSignOut={onSignOut} />
+        <Header email={email} onSignOut={onSignOut} loggedIn={loggedIn} />
         <Routes>
           <Route
             path="/sign-up"
