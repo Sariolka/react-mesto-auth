@@ -1,3 +1,4 @@
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import React from "react";
 
 function PopupWithForm({
@@ -8,6 +9,7 @@ function PopupWithForm({
   buttonTitle,
   onClose,
   onSubmit,
+  isDisabled=false
 }) {
   return (
     <div className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`}>
@@ -22,11 +24,14 @@ function PopupWithForm({
         <form
           className={`popup__form popup__form-${name}`}
           name={`form-${name}`}
-          noValidate
           onSubmit={onSubmit}
         >
           {children}
-          <button type="submit" className="popup__button-submit">
+          <button
+            type="submit"
+            className={`popup__button-submit ${!isDisabled ? 'popup__button-submit' : 'popup__button-submit_inactive'}`}
+            disabled={isDisabled}
+          >
             {buttonTitle}
           </button>
         </form>

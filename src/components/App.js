@@ -36,7 +36,7 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [isSuccess, setIsSuccess] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-
+ 
 
   const navigate = useNavigate();
 
@@ -220,7 +220,6 @@ function App() {
   };
 
   return (
-     
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header email={email} onSignOut={onSignOut} loggedIn={loggedIn} />
@@ -229,22 +228,26 @@ function App() {
             path="/sign-up"
             element={<Register onRegister={handleRegister} />}
           />
-          <Route path="/sign-in" element={<Login onLogin={handleLogin}/>} />
+          <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
           <Route
             path="/"
             element={
-              loading ? <Preloader loading={loading}/> :<ProtectedRoute
-                element={Main}
-                loggedIn={loggedIn}
-                onEditAvatar={handleEditAvatarClick}
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                onClose={closeAllPopups}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handleOpenCardDeletePopup}
-                cards={cards}
-              />
+              loading ? (
+                <Preloader loading={loading} />
+              ) : (
+                <ProtectedRoute
+                  element={Main}
+                  loggedIn={loggedIn}
+                  onEditAvatar={handleEditAvatarClick}
+                  onEditProfile={handleEditProfileClick}
+                  onAddPlace={handleAddPlaceClick}
+                  onClose={closeAllPopups}
+                  onCardClick={handleCardClick}
+                  onCardLike={handleCardLike}
+                  onCardDelete={handleOpenCardDeletePopup}
+                  cards={cards}
+                />
+              )
             }
           />
         </Routes>
@@ -261,11 +264,13 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
+          
         />
 
         <ImagePopup
@@ -273,25 +278,21 @@ function App() {
           onClose={closeAllPopups}
           isOpen={isOpenCardPopupOpen}
         />
-    
 
-      <DeleteCardPopup
-        isOpen={isDeleteCardPopupOpen}
-        onClose={closeAllPopups}
-        onDeleteCard={handleCardDelete}
-        card={cardForDelete}
-      />
-      <InfoTooltip
-        isOpen={isInfoTooltipPopupOpen}
-        onClose={closeAllPopups}
-        isSuccess={isSuccess}
-      />
-       
-      </div> 
+        <DeleteCardPopup
+          isOpen={isDeleteCardPopupOpen}
+          onClose={closeAllPopups}
+          onDeleteCard={handleCardDelete}
+          card={cardForDelete}
+        />
+        <InfoTooltip
+          isOpen={isInfoTooltipPopupOpen}
+          onClose={closeAllPopups}
+          isSuccess={isSuccess}
+        />
+      </div>
     </CurrentUserContext.Provider>
-    
-  )
-  
+  );
 }
 
 export default App;
