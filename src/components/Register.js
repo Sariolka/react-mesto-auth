@@ -1,20 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "../hooks/useForm";
 
 function Register({ onRegister }) {
-  const [formValue, setFormValue] = React.useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
-  };
+  const { formValue, handleChange } = useForm({});
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();

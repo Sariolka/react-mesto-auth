@@ -157,6 +157,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setIsInfoTooltipPopupOpen(true);
+        setIsSuccess(false);
       })
       .finally(() => setLoading(false));
   }
@@ -235,7 +237,7 @@ function App() {
           <Route
             path="/"
             element={
-               loading ? (
+              loading ? (
                 <Preloader loading={loading} />
               ) : (
                 <ProtectedRoute

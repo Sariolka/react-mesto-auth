@@ -1,24 +1,12 @@
-import React from "react";
+import { useForm } from "../hooks/useForm";
 
 function Login({ onLogin }) {
-  const [formValue, setFormValue] = React.useState({
-    password: "",
-    email: "",
-  });
+  const { formValue, handleChange } = useForm({});
 
   function handleSubmit(e) {
     e.preventDefault();
     const { password, email } = formValue;
     onLogin(password, email);
-  }
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
   }
 
   return (

@@ -1,8 +1,11 @@
 import React from "react";
+import { usePopupClose } from "../hooks/usePopupClose";
 import success from "../images/success.svg";
 import unSuccess from "../images/unSuccess.svg";
 
 function InfoTooltip({ onClose, isOpen, isSuccess }) {
+  usePopupClose(isOpen, onClose);
+
   return (
     <div className={`popup popup_type_tooltip ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container popup__container-tooltip">
