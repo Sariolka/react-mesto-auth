@@ -36,7 +36,6 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [isSuccess, setIsSuccess] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
- 
 
   const navigate = useNavigate();
 
@@ -264,13 +263,11 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
-          
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
-          
         />
 
         <ImagePopup

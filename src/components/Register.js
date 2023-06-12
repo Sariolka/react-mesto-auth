@@ -19,7 +19,7 @@ function Register({ onRegister }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { password, email } = formValue;
-    onRegister( password, email );
+    onRegister(password, email);
   };
 
   return (
@@ -54,9 +54,9 @@ function Register({ onRegister }) {
         <button type="submit" className="auth__button-submit">
           Зарегистрироваться
         </button>
-      <Link to="/sign-in" className="auth__link">
-        Уже зарегистрированы? Войти
-      </Link>
+        <Link to="/sign-in" className="auth__link">
+          Уже зарегистрированы? Войти
+        </Link>
       </form>
     </div>
   );

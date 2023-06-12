@@ -6,8 +6,7 @@ function useValidation() {
   const [isValid, setIsValid] = useState(false);
 
   function handleChange(e) {
-    const { name, value} = e.target;
-    
+    const { name, value } = e.target;
 
     setFormValues({
       ...formValues,
@@ -31,7 +30,7 @@ function useValidation() {
     isValid,
     resetErrors,
     setFormValues,
-    setIsValid
+    setIsValid,
   };
 }
 
