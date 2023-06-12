@@ -52,6 +52,7 @@ function App() {
   }, []);
 
   React.useEffect(() => {
+    setLoading(true);
     api
       .getInitialCards()
       .then((cards) => {
@@ -60,7 +61,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   function handleCardLike(card) {
@@ -141,6 +143,7 @@ function App() {
   }
 
   function handleLogin(password, email) {
+    setLoading(true);
     auth
       .authorize(password, email)
       .then((res) => {
@@ -154,7 +157,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   function onSignOut() {
@@ -170,7 +174,6 @@ function App() {
         .checkToken(token)
         .then((res) => {
           if (res) {
-            setLoading(false);
             setIsInfoTooltipPopupOpen(false);
             setLoggedIn(true);
             console.log(res.data.email);
@@ -180,7 +183,8 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+        .finally(() => setLoading(false));
     }
   }
 
@@ -231,7 +235,7 @@ function App() {
           <Route
             path="/"
             element={
-              loading ? (
+               loading ? (
                 <Preloader loading={loading} />
               ) : (
                 <ProtectedRoute
@@ -247,6 +251,12 @@ function App() {
                   cards={cards}
                 />
               )
+            }
+          />
+          <Route
+            path="*"
+            element={
+              !loggedIn ? <Navigate to="/sign-up" /> : <Navigate to="/" />
             }
           />
         </Routes>
