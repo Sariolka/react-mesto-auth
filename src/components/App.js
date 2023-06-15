@@ -36,6 +36,7 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [isSuccess, setIsSuccess] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -80,6 +81,7 @@ function App() {
   }
 
   function handleCardDelete(card) {
+    setIsLoading(true);
     api
       .deleteCard(card)
       .then(() => {
@@ -88,10 +90,12 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleUpdateUser(value) {
+    setIsLoading(true);
     api
       .editUserProfile(value)
       .then((res) => {
@@ -100,10 +104,12 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleUpdateAvatar(value) {
+    setIsLoading(true);
     api
       .changeAvatar(value)
       .then((res) => {
@@ -112,10 +118,12 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleAddPlaceSubmit(value) {
+    setIsLoading(true);
     api
       .addNewCard(value)
       .then((newCard) => {
@@ -124,7 +132,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleRegister(password, email) {
@@ -137,9 +146,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        setIsInfoTooltipPopupOpen(true);
         setIsSuccess(false);
-      });
+      })
+      .finally(() => setIsInfoTooltipPopupOpen(true));
   }
 
   function handleLogin(password, email) {
@@ -269,17 +278,20 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          isLoading={isLoading}
         />
 
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          isLoading={isLoading}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
+          isLoading={isLoading}
         />
 
         <ImagePopup
@@ -293,6 +305,7 @@ function App() {
           onClose={closeAllPopups}
           onDeleteCard={handleCardDelete}
           card={cardForDelete}
+          isLoading={isLoading}
         />
         <InfoTooltip
           isOpen={isInfoTooltipPopupOpen}

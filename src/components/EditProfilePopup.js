@@ -3,7 +3,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import PopupWithForm from "./PopupWithForm";
 import useValidation from "../hooks/useValidation";
 
-function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const {
@@ -12,12 +12,12 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     setFormValues,
     showErrors,
     isValid,
-    resetErrors,
+    resetValidation,
     setIsValid,
   } = useValidation({});
 
   React.useEffect(() => {
-    resetErrors();
+    resetValidation();
     setFormValues(currentUser);
     setIsValid(true);
   }, [currentUser, isOpen]);
@@ -32,7 +32,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       name="profile"
       title="Редактировать профиль"
       isOpen={isOpen}
-      buttonTitle={"Сохранить"}
+      buttonTitle={isLoading ? "Сохранение..." : "Сохранить"}
       onClose={onClose}
       isValid={isValid}
       onSubmit={handleSubmit}

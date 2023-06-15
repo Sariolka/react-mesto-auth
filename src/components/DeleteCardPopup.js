@@ -2,7 +2,7 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import { usePopupClose } from "../hooks/usePopupClose";
 
-function DeleteCardPopup({ isOpen, onClose, onDeleteCard, card }) {
+function DeleteCardPopup({ isOpen, onClose, onDeleteCard, card, isLoading }) {
   usePopupClose(isOpen, onClose);
   function handleSubmit(e) {
     e.preventDefault();
@@ -13,11 +13,11 @@ function DeleteCardPopup({ isOpen, onClose, onDeleteCard, card }) {
     <PopupWithForm
       name="card-delete"
       title="Вы уверены?"
-      buttonTitle={"Да"}
+      buttonTitle={isLoading ? "Удаление..." : "Да"}
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
-    ></PopupWithForm>
+    />
   );
 }
 

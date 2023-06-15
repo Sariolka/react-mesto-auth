@@ -17,10 +17,10 @@ function useValidation() {
     setIsValid(e.target.closest("form").checkValidity());
   }
 
-  function resetErrors() {
-    setShowErrors([]);
+  function resetValidation() {
+    setShowErrors({});
     setIsValid(false);
-    setFormValues([]);
+    setFormValues({});
   }
 
   return {
@@ -28,7 +28,7 @@ function useValidation() {
     handleChange,
     showErrors,
     isValid,
-    resetErrors,
+    resetValidation,
     setFormValues,
     setIsValid,
   };
