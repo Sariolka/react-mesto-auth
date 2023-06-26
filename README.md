@@ -8,4 +8,4 @@
 * CSS
 * React JS  
 
-##https://sariolka.github.io/react-mesto-auth/
+https://sariolka.github.io/react-mesto-auth/
